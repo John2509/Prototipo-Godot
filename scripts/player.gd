@@ -8,15 +8,15 @@ extends KinematicBody2D
 # as long as it starts from a non-colliding spot too.
 
 # Member variables
-const GRAVITY = 2500.0 # Pixels/second
+const GRAVITY = 1500.0 # Pixels/second
 
 # Angle in degrees towards either side that the player can consider "floor"
 const FLOOR_ANGLE_TOLERANCE = 40
-const WALK_FORCE = 3000
-const WALK_MIN_SPEED = 50
-const WALK_MAX_SPEED = 1000
-const STOP_FORCE = 5000
-const JUMP_SPEED = 1500
+const WALK_FORCE = 1800
+const WALK_MIN_SPEED = 30
+const WALK_MAX_SPEED = 600
+const STOP_FORCE = 3000
+const JUMP_SPEED = 800
 const JUMP_MAX_AIRBORNE_TIME = 0.2
 
 const SLIDE_STOP_VELOCITY = 5.0 # One pixel per second
