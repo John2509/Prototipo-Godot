@@ -12,7 +12,7 @@ const GRAVITY = 1500.0 # Pixels/second
 
 # Angle in degrees towards either side that the player can consider "floor"
 const FLOOR_ANGLE_TOLERANCE = 40
-const WALK_FORCE = 1800
+const WALK_FORCE = 18000
 const WALK_MIN_SPEED = 30
 const WALK_MAX_SPEED = 600
 const STOP_FORCE = 3000
@@ -33,6 +33,7 @@ var walk_right_text = "move_right_p"
 var jump_text = "jump_p"
 
 func _fixed_process(delta):
+	
 	mover(delta)
 
 func mover(delta):
@@ -48,11 +49,15 @@ func mover(delta):
 	if (walk_left):
 		if (velocity.x <= WALK_MIN_SPEED and velocity.x > -WALK_MAX_SPEED):
 			force.x -= WALK_FORCE
+		elif(velocity.x > WALK_MIN_SPEED):
+			velocity.x = 0
 			stop = false
 	elif (walk_right):
 		if (velocity.x >= -WALK_MIN_SPEED and velocity.x < WALK_MAX_SPEED):
 			force.x += WALK_FORCE
 			stop = false
+		elif(velocity.x < -WALK_MIN_SPEED):
+			velocity.x = 0
 	
 	if (stop):
 		var vsign = sign(velocity.x)
@@ -125,9 +130,9 @@ func mover(delta):
 	on_air_time += delta
 	prev_jump_pressed = jump
 
-
 func _ready():
 	set_fixed_process(true)
+	set_process_input(true)
 	if (get_name() == "player1"):
 		walk_left_text += "1"
 		walk_right_text += "1"
@@ -136,3 +141,4 @@ func _ready():
 		walk_left_text += "2"
 		walk_right_text += "2"
 		jump_text += "2"
+		
