@@ -1,8 +1,10 @@
-[gd_scene load_steps=11 format=1]
+[gd_scene load_steps=14 format=1]
 
 [ext_resource path="res://scripts/player.gd" type="Script" id=1]
 [ext_resource path="res://sprites/Player16x16.png" type="Texture" id=2]
 [ext_resource path="res://sprites/Player_2_16x16.png" type="Texture" id=3]
+[ext_resource path="res://ObjetoQueCai.gd" type="Script" id=4]
+[ext_resource path="res://icon.png" type="Texture" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -38,6 +40,11 @@ points = Vector2Array( -50, 539, 1061, 539, 1061, 668, -50, 668 )
 
 shader/shading_mode = 0
 
+[sub_resource type="RectangleShape2D" id=8]
+
+custom_solver_bias = 0.0
+extents = Vector2( 10, 9.78098 )
+
 [node name="main" type="Node"]
 
 [node name="player1" type="KinematicBody2D" parent="."]
@@ -61,7 +68,6 @@ hframes = 4
 
 [node name="shape" type="CollisionShape2D" parent="player1"]
 
-visibility/visible = false
 transform/pos = Vector2( 0.500018, 1.5 )
 transform/scale = Vector2( 0.513458, 0.6125 )
 shape = SubResource( 1 )
@@ -89,7 +95,6 @@ hframes = 4
 
 [node name="shape" type="CollisionShape2D" parent="player2"]
 
-visibility/visible = false
 transform/pos = Vector2( 1.09673e-05, 1 )
 transform/scale = Vector2( 0.563147, 0.575 )
 shape = SubResource( 1 )
@@ -168,5 +173,30 @@ build_mode = 0
 polygon = Vector2Array( -50, 539, 1061, 539, 1061, 668, -50, 668 )
 shape_range = Vector2( 4, 4 )
 trigger = false
+
+[node name="ObjetoQueCai" type="KinematicBody2D" parent="."]
+
+transform/pos = Vector2( 297.774, 110.772 )
+transform/scale = Vector2( 0.936515, 1 )
+input/pickable = false
+shapes/0/shape = SubResource( 8 )
+shapes/0/transform = Matrix32( 3.15211, 0, 0, 3.19265, 0.411304, 0.259319 )
+shapes/0/trigger = false
+collision/layers = 1
+collision/mask = 1
+collision/margin = 0.08
+script/script = ExtResource( 4 )
+
+[node name="Sprite" type="Sprite" parent="ObjetoQueCai"]
+
+texture = ExtResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ObjetoQueCai"]
+
+transform/pos = Vector2( 0.411304, 0.259319 )
+transform/scale = Vector2( 3.15211, 3.19265 )
+shape = SubResource( 8 )
+trigger = false
+_update_shape_index = 0
 
 
