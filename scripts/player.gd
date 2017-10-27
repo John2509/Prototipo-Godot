@@ -46,7 +46,9 @@ func mover(delta):
 	
 	var stop = true
 	
-	if (walk_left):
+	if (walk_right && walk_left):
+		stop = true
+	elif (walk_left):
 		if (velocity.x <= WALK_MIN_SPEED and velocity.x > -WALK_MAX_SPEED):
 			force.x -= WALK_FORCE
 			stop = false
