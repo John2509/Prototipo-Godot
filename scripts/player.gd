@@ -1,4 +1,3 @@
-
 extends KinematicBody2D
 
 # This is a simple collision demo showing how
@@ -143,4 +142,3 @@ func _ready():
 		walk_left_text += "2"
 		walk_right_text += "2"
 		jump_text += "2"
-		
