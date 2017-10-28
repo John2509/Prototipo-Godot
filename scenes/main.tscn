@@ -3,7 +3,7 @@
 [ext_resource path="res://scripts/player.gd" type="Script" id=1]
 [ext_resource path="res://sprites/Player16x16.png" type="Texture" id=2]
 [ext_resource path="res://sprites/Player_2_16x16.png" type="Texture" id=3]
-[ext_resource path="res://ObjetoQueCai.gd" type="Script" id=4]
+[ext_resource path="res://scripts/ObjetoQueCai.gd" type="Script" id=4]
 [ext_resource path="res://icon.png" type="Texture" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
@@ -49,6 +49,7 @@ extents = Vector2( 10, 9.78098 )
 
 [node name="player1" type="KinematicBody2D" parent="."]
 
+editor/display_folded = true
 transform/pos = Vector2( 288, 247 )
 input/pickable = false
 shapes/0/shape = SubResource( 1 )
@@ -76,6 +77,7 @@ _update_shape_index = 0
 
 [node name="player2" type="KinematicBody2D" parent="."]
 
+editor/display_folded = true
 transform/pos = Vector2( 300, 554 )
 input/pickable = false
 shapes/0/shape = SubResource( 1 )
@@ -103,6 +105,7 @@ _update_shape_index = 0
 
 [node name="chao" type="StaticBody2D" parent="."]
 
+editor/display_folded = true
 input/pickable = false
 shapes/0/shape = SubResource( 2 )
 shapes/0/transform = Matrix32( 1.00096, 0, 0, 0.261628, 16, 159 )
