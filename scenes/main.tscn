@@ -1,172 +1,21 @@
-[gd_scene load_steps=11 format=1]
+[gd_scene load_steps=4 format=1]
 
-[ext_resource path="res://scripts/player.gd" type="Script" id=1]
-[ext_resource path="res://sprites/Player16x16.png" type="Texture" id=2]
-[ext_resource path="res://sprites/Player_2_16x16.png" type="Texture" id=3]
-
-[sub_resource type="RectangleShape2D" id=1]
-
-custom_solver_bias = 0.0
-extents = Vector2( 27.1875, 37 )
-
-[sub_resource type="ConvexPolygonShape2D" id=8]
-
-custom_solver_bias = 0.0
-points = Vector2Array( -50, 539, 1061, 539, 1061, 668, -50, 668 )
-
-[sub_resource type="ConvexPolygonShape2D" id=9]
-
-custom_solver_bias = 0.0
-points = Vector2Array( -50, 539, 1061, 539, 1061, 668, -50, 668 )
-
-[sub_resource type="ConvexPolygonShape2D" id=10]
-
-custom_solver_bias = 0.0
-points = Vector2Array( -50, 539, 1061, 539, 1061, 668, -50, 668 )
-
-[sub_resource type="ConvexPolygonShape2D" id=11]
-
-custom_solver_bias = 0.0
-points = Vector2Array( -50, 539, 1061, 539, 1061, 668, -50, 668 )
-
-[sub_resource type="ConvexPolygonShape2D" id=12]
-
-custom_solver_bias = 0.0
-points = Vector2Array( -50, 539, 1061, 539, 1061, 668, -50, 668 )
-
-[sub_resource type="CanvasItemMaterial" id=7]
-
-shader/shading_mode = 0
+[ext_resource path="res://scenes/player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/background.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/Objeto_que_cai.tscn" type="PackedScene" id=3]
 
 [node name="main" type="Node"]
 
-[node name="player1" type="KinematicBody2D" parent="."]
+[node name="player1" parent="." instance=ExtResource( 1 )]
 
-editor/display_folded = true
-transform/pos = Vector2( 288, 247 )
-input/pickable = false
-shapes/0/shape = SubResource( 1 )
-shapes/0/transform = Matrix32( 0.513458, 0, 0, 0.6125, 0.500018, 1.5 )
-shapes/0/trigger = false
-collision/layers = 1
-collision/mask = 1
-collision/margin = 0.08
-script/script = ExtResource( 1 )
+transform/pos = Vector2( 661.114, 231.529 )
 
-[node name="sprite_p1" type="Sprite" parent="player1"]
+[node name="player2" parent="." instance=ExtResource( 1 )]
 
-transform/scale = Vector2( 3, 3 )
-texture = ExtResource( 2 )
-vframes = 4
-hframes = 4
+transform/pos = Vector2( 326.372, 527.217 )
 
-[node name="shape" type="CollisionShape2D" parent="player1"]
+[node name="background" parent="." instance=ExtResource( 2 )]
 
-transform/pos = Vector2( 0.500018, 1.5 )
-transform/scale = Vector2( 0.513458, 0.6125 )
-shape = SubResource( 1 )
-trigger = false
-_update_shape_index = 0
-
-[node name="player2" type="KinematicBody2D" parent="."]
-
-editor/display_folded = true
-transform/pos = Vector2( 300, 554 )
-input/pickable = false
-shapes/0/shape = SubResource( 1 )
-shapes/0/transform = Matrix32( 0.563147, 0, 0, 0.575, 1.09673e-05, 1 )
-shapes/0/trigger = false
-collision/layers = 1
-collision/mask = 1
-collision/margin = 0.08
-script/script = ExtResource( 1 )
-
-[node name="sprite_p2" type="Sprite" parent="player2"]
-
-transform/scale = Vector2( 3, 3 )
-texture = ExtResource( 3 )
-vframes = 4
-hframes = 4
-
-[node name="shape" type="CollisionShape2D" parent="player2"]
-
-transform/pos = Vector2( 1.09673e-05, 1 )
-transform/scale = Vector2( 0.563147, 0.575 )
-shape = SubResource( 1 )
-trigger = false
-_update_shape_index = 0
-
-[node name="chao" type="StaticBody2D" parent="."]
-
-input/pickable = false
-shapes/0/shape = SubResource( 8 )
-shapes/0/transform = Matrix32( 1.00096, 0, 0, 0.261628, 16, 159 )
-shapes/0/trigger = false
-shapes/1/shape = SubResource( 9 )
-shapes/1/transform = Matrix32( 1.00096, 0, 0, 1, 9, 68 )
-shapes/1/trigger = false
-shapes/2/shape = SubResource( 10 )
-shapes/2/transform = Matrix32( 1.00096, 0, 0, 1, 2, -641 )
-shapes/2/trigger = false
-shapes/3/shape = SubResource( 11 )
-shapes/3/transform = Matrix32( -4.37534e-08, -1.00096, 1, -4.37114e-08, -640, 843 )
-shapes/3/trigger = false
-shapes/4/shape = SubResource( 12 )
-shapes/4/transform = Matrix32( -4.37534e-08, 1.00096, -1, -4.37114e-08, 1668, -170 )
-shapes/4/trigger = false
-collision/layers = 1
-collision/mask = 1
-constant_linear_velocity = Vector2( 0, 0 )
-constant_angular_velocity = 0.0
-friction = 1.0
-bounce = 0.0
-
-[node name="poly1" type="CollisionPolygon2D" parent="chao"]
-
-material/material = SubResource( 7 )
-transform/pos = Vector2( 16, 159 )
-transform/scale = Vector2( 1.00096, 0.261628 )
-build_mode = 0
-polygon = Vector2Array( -50, 539, 1061, 539, 1061, 668, -50, 668 )
-shape_range = Vector2( 0, 0 )
-trigger = false
-
-[node name="poly2" type="CollisionPolygon2D" parent="chao"]
-
-transform/pos = Vector2( 9, 68 )
-transform/scale = Vector2( 1.00096, 1 )
-build_mode = 0
-polygon = Vector2Array( -50, 539, 1061, 539, 1061, 668, -50, 668 )
-shape_range = Vector2( 1, 1 )
-trigger = false
-
-[node name="poly3" type="CollisionPolygon2D" parent="chao"]
-
-transform/pos = Vector2( 2, -641 )
-transform/scale = Vector2( 1.00096, 1 )
-build_mode = 0
-polygon = Vector2Array( -50, 539, 1061, 539, 1061, 668, -50, 668 )
-shape_range = Vector2( 2, 2 )
-trigger = false
-
-[node name="poly4" type="CollisionPolygon2D" parent="chao"]
-
-transform/pos = Vector2( -640, 843 )
-transform/rot = 90.0
-transform/scale = Vector2( 1.00096, 1 )
-build_mode = 0
-polygon = Vector2Array( -50, 539, 1061, 539, 1061, 668, -50, 668 )
-shape_range = Vector2( 3, 3 )
-trigger = false
-
-[node name="poly5" type="CollisionPolygon2D" parent="chao"]
-
-transform/pos = Vector2( 1668, -170 )
-transform/rot = -90.0
-transform/scale = Vector2( 1.00096, 1 )
-build_mode = 0
-polygon = Vector2Array( -50, 539, 1061, 539, 1061, 668, -50, 668 )
-shape_range = Vector2( 4, 4 )
-trigger = false
+[node name="Objeto_que_cai" parent="." instance=ExtResource( 3 )]
 
 

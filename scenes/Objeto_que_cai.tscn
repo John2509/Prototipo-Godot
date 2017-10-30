@@ -14,23 +14,24 @@ script/script = ExtResource( 1 )
 
 [node name="objeto_cima" type="RigidBody2D" parent="."]
 
-transform/pos = Vector2( 520, 100 )
+editor/display_folded = true
+transform/pos = Vector2( 520, 47 )
 input/pickable = false
 shapes/0/shape = SubResource( 1 )
-shapes/0/transform = Matrix32( 4.36463, 0, 0, 4.36223, 0, 8 )
+shapes/0/transform = Matrix32( 4.30948, 0, 0, 4.15624, 0.151367, 12.0312 )
 shapes/0/trigger = false
 collision/layers = 1
 collision/mask = 1
-mode = 0
+mode = 1
 mass = 1.0
 friction = 1.0
-bounce = 0.0
-gravity_scale = 1.0
+bounce = 0.1
+gravity_scale = 6.0
 custom_integrator = false
 continuous_cd = 0
 contacts_reported = 0
 contact_monitor = false
-sleeping = false
+sleeping = true
 can_sleep = true
 velocity/linear = Vector2( 0, 0 )
 velocity/angular = 0.0
@@ -43,31 +44,32 @@ texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="objeto_cima"]
 
-transform/pos = Vector2( 0, 8 )
-transform/scale = Vector2( 4.36463, 4.36223 )
+transform/pos = Vector2( 0.151367, 12.0312 )
+transform/scale = Vector2( 4.30948, 4.15624 )
 shape = SubResource( 1 )
 trigger = false
 _update_shape_index = 0
 
 [node name="objeto_baixo" type="RigidBody2D" parent="."]
 
-transform/pos = Vector2( 520, 350 )
+editor/display_folded = true
+transform/pos = Vector2( 520, 381 )
 input/pickable = false
 shapes/0/shape = SubResource( 1 )
-shapes/0/transform = Matrix32( 4.36463, 0, 0, 4.36223, 0, 8 )
+shapes/0/transform = Matrix32( 4.36923, 0, 0, 4.13799, 0.0536788, 11.7939 )
 shapes/0/trigger = false
 collision/layers = 1
 collision/mask = 1
-mode = 0
+mode = 1
 mass = 1.0
 friction = 1.0
-bounce = 0.0
-gravity_scale = 1.0
+bounce = 0.1
+gravity_scale = 6.0
 custom_integrator = false
 continuous_cd = 0
 contacts_reported = 0
 contact_monitor = false
-sleeping = false
+sleeping = true
 can_sleep = true
 velocity/linear = Vector2( 0, 0 )
 velocity/angular = 0.0
@@ -80,8 +82,8 @@ texture = ExtResource( 2 )
 
 [node name="CollisionShape2D1" type="CollisionShape2D" parent="objeto_baixo"]
 
-transform/pos = Vector2( 0, 8 )
-transform/scale = Vector2( 4.36463, 4.36223 )
+transform/pos = Vector2( 0.0536788, 11.7939 )
+transform/scale = Vector2( 4.36923, 4.13799 )
 shape = SubResource( 1 )
 trigger = false
 _update_shape_index = 0
