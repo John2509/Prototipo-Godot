@@ -27,13 +27,29 @@ var jumping = false
 
 var prev_jump_pressed = false
 
+var esta_atirando = false
+
 var walk_left_text = "move_left_p"
 var walk_right_text = "move_right_p"
 var jump_text = "jump_p"
+var shoot_text= "shoot_p"
 
 func _fixed_process(delta):
-	
+	atirar()
 	mover(delta)
+
+func atirar():
+	var atirar = Input.is_action_pressed(shoot_text)
+	if (atirar and not esta_atirando):
+		# Just pressed
+		var shot = preload("res://scenes/bala.tscn").instance()
+		# Use the Position2D as reference
+		shot.set_pos(get_global_pos())
+		# Put it two parents above, so it is not moved by us
+		get_node("../").add_child(shot)
+	
+	esta_atirando = atirar
+
 
 func mover(delta):
 	# Create forces
@@ -134,11 +150,12 @@ func mover(delta):
 func _ready():
 	set_fixed_process(true)
 	set_process_input(true)
+	var numero
 	if (get_name() == "player1"):
-		walk_left_text += "1"
-		walk_right_text += "1"
-		jump_text += "1"
+		numero = "1"
 	else:
-		walk_left_text += "2"
-		walk_right_text += "2"
-		jump_text += "2"
+		numero = "2"
+	walk_left_text += numero
+	walk_right_text += numero
+	jump_text += numero
+	shoot_text += numero
