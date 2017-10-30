@@ -35,8 +35,8 @@ var jump_text = "jump_p"
 var shoot_text= "shoot_p"
 
 func _fixed_process(delta):
-	atirar()
 	mover(delta)
+	atirar()
 
 func atirar():
 	var atirar = Input.is_action_pressed(shoot_text)
@@ -44,7 +44,15 @@ func atirar():
 		# Just pressed
 		var shot = preload("res://scenes/bala.tscn").instance()
 		# Use the Position2D as reference
-		shot.set_pos(get_global_pos())
+		var direcao = Vector2(0,0)
+		if(Input.is_action_pressed(walk_left_text)):
+			direcao += Vector2(-1,0)
+		if(Input.is_action_pressed(walk_right_text)):
+			direcao += Vector2(1,0)
+		if(Input.is_action_pressed(jump_text)):
+			direcao += Vector2(0,-1)
+		shot.set_direcao(direcao)
+		shot.set_pos(get_global_pos()+(direcao*30))
 		# Put it two parents above, so it is not moved by us
 		get_node("../").add_child(shot)
 	
