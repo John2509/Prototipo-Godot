@@ -1,37 +1,35 @@
-[gd_scene load_steps=14 format=1]
+[gd_scene load_steps=11 format=1]
 
 [ext_resource path="res://scripts/player.gd" type="Script" id=1]
 [ext_resource path="res://sprites/Player16x16.png" type="Texture" id=2]
 [ext_resource path="res://sprites/Player_2_16x16.png" type="Texture" id=3]
-[ext_resource path="res://scripts/ObjetoQueCai.gd" type="Script" id=4]
-[ext_resource path="res://icon.png" type="Texture" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
 extents = Vector2( 27.1875, 37 )
 
-[sub_resource type="ConvexPolygonShape2D" id=2]
+[sub_resource type="ConvexPolygonShape2D" id=8]
 
 custom_solver_bias = 0.0
 points = Vector2Array( -50, 539, 1061, 539, 1061, 668, -50, 668 )
 
-[sub_resource type="ConvexPolygonShape2D" id=3]
+[sub_resource type="ConvexPolygonShape2D" id=9]
 
 custom_solver_bias = 0.0
 points = Vector2Array( -50, 539, 1061, 539, 1061, 668, -50, 668 )
 
-[sub_resource type="ConvexPolygonShape2D" id=4]
+[sub_resource type="ConvexPolygonShape2D" id=10]
 
 custom_solver_bias = 0.0
 points = Vector2Array( -50, 539, 1061, 539, 1061, 668, -50, 668 )
 
-[sub_resource type="ConvexPolygonShape2D" id=5]
+[sub_resource type="ConvexPolygonShape2D" id=11]
 
 custom_solver_bias = 0.0
 points = Vector2Array( -50, 539, 1061, 539, 1061, 668, -50, 668 )
 
-[sub_resource type="ConvexPolygonShape2D" id=6]
+[sub_resource type="ConvexPolygonShape2D" id=12]
 
 custom_solver_bias = 0.0
 points = Vector2Array( -50, 539, 1061, 539, 1061, 668, -50, 668 )
@@ -39,11 +37,6 @@ points = Vector2Array( -50, 539, 1061, 539, 1061, 668, -50, 668 )
 [sub_resource type="CanvasItemMaterial" id=7]
 
 shader/shading_mode = 0
-
-[sub_resource type="RectangleShape2D" id=8]
-
-custom_solver_bias = 0.0
-extents = Vector2( 10, 9.78098 )
 
 [node name="main" type="Node"]
 
@@ -77,6 +70,7 @@ _update_shape_index = 0
 
 [node name="player2" type="KinematicBody2D" parent="."]
 
+editor/display_folded = true
 transform/pos = Vector2( 300, 554 )
 input/pickable = false
 shapes/0/shape = SubResource( 1 )
@@ -104,22 +98,21 @@ _update_shape_index = 0
 
 [node name="chao" type="StaticBody2D" parent="."]
 
-editor/display_folded = true
 input/pickable = false
-shapes/0/shape = SubResource( 2 )
+shapes/0/shape = SubResource( 8 )
 shapes/0/transform = Matrix32( 1.00096, 0, 0, 0.261628, 16, 159 )
 shapes/0/trigger = false
-shapes/1/shape = SubResource( 3 )
+shapes/1/shape = SubResource( 9 )
 shapes/1/transform = Matrix32( 1.00096, 0, 0, 1, 9, 68 )
 shapes/1/trigger = false
-shapes/2/shape = SubResource( 4 )
+shapes/2/shape = SubResource( 10 )
 shapes/2/transform = Matrix32( 1.00096, 0, 0, 1, 2, -641 )
 shapes/2/trigger = false
-shapes/3/shape = SubResource( 5 )
-shapes/3/transform = Matrix32( -4.37532e-08, -1.00096, 1, -4.37114e-08, -640, 843 )
+shapes/3/shape = SubResource( 11 )
+shapes/3/transform = Matrix32( -4.37534e-08, -1.00096, 1, -4.37114e-08, -640, 843 )
 shapes/3/trigger = false
-shapes/4/shape = SubResource( 6 )
-shapes/4/transform = Matrix32( -4.37532e-08, 1.00096, -1, -4.37114e-08, 1668, -170 )
+shapes/4/shape = SubResource( 12 )
+shapes/4/transform = Matrix32( -4.37534e-08, 1.00096, -1, -4.37114e-08, 1668, -170 )
 shapes/4/trigger = false
 collision/layers = 1
 collision/mask = 1
@@ -175,30 +168,5 @@ build_mode = 0
 polygon = Vector2Array( -50, 539, 1061, 539, 1061, 668, -50, 668 )
 shape_range = Vector2( 4, 4 )
 trigger = false
-
-[node name="ObjetoQueCai" type="KinematicBody2D" parent="."]
-
-transform/pos = Vector2( 297.774, 110.772 )
-transform/scale = Vector2( 0.936515, 1 )
-input/pickable = false
-shapes/0/shape = SubResource( 8 )
-shapes/0/transform = Matrix32( 3.15211, 0, 0, 3.19265, 0.411304, 0.259319 )
-shapes/0/trigger = false
-collision/layers = 1
-collision/mask = 1
-collision/margin = 0.08
-script/script = ExtResource( 4 )
-
-[node name="Sprite" type="Sprite" parent="ObjetoQueCai"]
-
-texture = ExtResource( 5 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ObjetoQueCai"]
-
-transform/pos = Vector2( 0.411304, 0.259319 )
-transform/scale = Vector2( 3.15211, 3.19265 )
-shape = SubResource( 8 )
-trigger = false
-_update_shape_index = 0
 
 
