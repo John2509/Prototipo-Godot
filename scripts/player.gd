@@ -33,6 +33,8 @@ var walk_left_text = "move_left_p"
 var walk_right_text = "move_right_p"
 var jump_text = "jump_p"
 var shoot_text= "shoot_p"
+var look_up_text = "look_up_p"
+var look_down_text = "look_down_p"
 
 var direcao = Vector2(1,0)
 
@@ -43,13 +45,22 @@ func _fixed_process(delta):
 func atirar():
 	var atirar = Input.is_action_pressed(shoot_text)
 	if (atirar and not esta_atirando):
-		# Just pressed
+		var verificar = false
+		var aux = direcao.x
+		if (Input.is_action_pressed(look_up_text)):
+			direcao.y += -1
+			verificar = true
+		if (Input.is_action_pressed(look_down_text)):
+			direcao.y += 1
+			verificar = true
+		if (verificar and direcao.y != 0 and not Input.is_action_pressed(walk_left_text) and not Input.is_action_pressed(walk_right_text)):
+			direcao.x = 0
 		var shot = preload("res://scenes/bala.tscn").instance()
-		# Use the Position2D as reference
 		shot.set_direcao(direcao)
-		shot.set_pos(get_global_pos()+(direcao*30))
-		# Put it two parents above, so it is not moved by us
+		shot.set_pos(get_global_pos()+Vector2(direcao.x*30,direcao.y*45))
 		get_node("../").add_child(shot)
+		direcao.y = 0
+		direcao.x = aux
 	
 	esta_atirando = atirar
 
@@ -66,7 +77,6 @@ func mover(delta):
 	
 	if (walk_right && walk_left):
 		stop = true
-		direcao.x = 0
 	elif (walk_left):
 		if (velocity.x <= WALK_MIN_SPEED and velocity.x > -WALK_MAX_SPEED):
 			force.x -= WALK_FORCE
@@ -165,4 +175,6 @@ func _ready():
 	walk_right_text += numero
 	jump_text += numero
 	shoot_text += numero
+	look_up_text += numero
+	look_down_text += numero
 	get_child(0).set_texture(load("res://sprites/paiva"+numero+".png"))
