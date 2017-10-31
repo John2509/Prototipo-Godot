@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-var direcao = Vector2()
+var direcao = Vector2(1,0)
 var colidiu = false
 const velocidade = 1000
 
