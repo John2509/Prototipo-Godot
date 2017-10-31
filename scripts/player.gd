@@ -27,13 +27,43 @@ var jumping = false
 
 var prev_jump_pressed = false
 
+var esta_atirando = false
+
 var walk_left_text = "move_left_p"
 var walk_right_text = "move_right_p"
 var jump_text = "jump_p"
+var shoot_text= "shoot_p"
+var look_up_text = "look_up_p"
+var look_down_text = "look_down_p"
+
+var direcao = Vector2(1,0)
 
 func _fixed_process(delta):
-	
 	mover(delta)
+	atirar()
+
+func atirar():
+	var atirar = Input.is_action_pressed(shoot_text)
+	if (atirar and not esta_atirando):
+		var verificar = false
+		var aux = direcao.x
+		if (Input.is_action_pressed(look_up_text)):
+			direcao.y += -1
+			verificar = true
+		if (Input.is_action_pressed(look_down_text)):
+			direcao.y += 1
+			verificar = true
+		if (verificar and direcao.y != 0 and not Input.is_action_pressed(walk_left_text) and not Input.is_action_pressed(walk_right_text)):
+			direcao.x = 0
+		var shot = preload("res://scenes/bala.tscn").instance()
+		shot.set_direcao(direcao)
+		shot.set_pos(get_global_pos()+Vector2(direcao.x*30,direcao.y*45))
+		get_node("../").add_child(shot)
+		direcao.y = 0
+		direcao.x = aux
+	
+	esta_atirando = atirar
+
 
 func mover(delta):
 	# Create forces
@@ -53,12 +83,14 @@ func mover(delta):
 			stop = false
 		elif(velocity.x > WALK_MIN_SPEED):
 			velocity.x = 0
+		direcao.x = -1
 	elif (walk_right):
 		if (velocity.x >= -WALK_MIN_SPEED and velocity.x < WALK_MAX_SPEED):
 			force.x += WALK_FORCE
 			stop = false
 		elif(velocity.x < -WALK_MIN_SPEED):
 			velocity.x = 0
+		direcao.x = 1
 	
 	if (stop):
 		var vsign = sign(velocity.x)
@@ -134,11 +166,15 @@ func mover(delta):
 func _ready():
 	set_fixed_process(true)
 	set_process_input(true)
-	if (get_name() == "player1"):
-		walk_left_text += "1"
-		walk_right_text += "1"
-		jump_text += "1"
+	var numero
+	if (get_name() == "player1" or get_name() == "player"):
+		numero = "1"
 	else:
-		walk_left_text += "2"
-		walk_right_text += "2"
-		jump_text += "2"
+		numero = "2"
+	walk_left_text += numero
+	walk_right_text += numero
+	jump_text += numero
+	shoot_text += numero
+	look_up_text += numero
+	look_down_text += numero
+	get_child(0).set_texture(load("res://sprites/paiva"+numero+".png"))

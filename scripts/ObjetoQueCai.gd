@@ -1,27 +1,28 @@
-extends KinematicBody2D
-# class member variables go here, for example:
-# var a = 2
-# var b = "textvar"
-const GRAVITY = 1500.0 # Pixels/second
-const IS_FALLING = 0 #se esta caindo, pode matar
-var velocity = 0
-var speed = 0
+extends Node2D
 
+#var IS_FALLING = 0 #se esta caindo, pode matar
 
 func _fixed_process(delta):
-	_mover(delta)
-	pass
-	
-func _mover(delta):
-	if(IS_FALLING):
-		if(not is_colliding()):
-				speed += GRAVITY * delta
-				velocity = speed * delta
-				move(Vector2 (0,velocity))
-	else:
-		IS_FALLING = Input.is_action_pressed("drop_all") #checar se alguem interagiu com um dos objetos
-	pass
-	
+	#print ("ok")
+	if (ativar()):
+		for filho in get_children():
+			if (filho.get_type() == "RigidBody2D"):
+				filho.set_sleeping(false)
+				filho.set_gravity_scale(6)
+		#print ("nao ok")
+
+func ativar():
+	return Input.is_action_pressed("drop_all")
+
 func _ready():
+	print("teste")
+	for filho in get_children():
+		if (filho.get_type() == "RigidBody2D"):
+			filho.set_sleeping(true)
+			print(filho.get_name())
+			print(filho.is_sleeping())
+			print(filho.get_mode())
+			filho.set_mode(0)
+			filho.set_gravity_scale(0)
 	set_fixed_process(true)
 	pass
