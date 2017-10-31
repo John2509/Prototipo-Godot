@@ -13,9 +13,9 @@ const GRAVITY = 1500.0 # Pixels/second
 const FLOOR_ANGLE_TOLERANCE = 40
 const WALK_FORCE = 1800
 const WALK_MIN_SPEED = 30
-const WALK_MAX_SPEED = 600
+const WALK_MAX_SPEED = 450
 const STOP_FORCE = 3000
-const JUMP_SPEED = 800
+const JUMP_SPEED = 600
 const JUMP_MAX_AIRBORNE_TIME = 0.2
 
 const SLIDE_STOP_VELOCITY = 5.0 # One pixel per second
@@ -35,6 +35,9 @@ var jump_text = "jump_p"
 var shoot_text= "shoot_p"
 var look_up_text = "look_up_p"
 var look_down_text = "look_down_p"
+
+var new_animation = ""
+var animation = ""
 
 var direcao = Vector2(1,0)
 
@@ -162,6 +165,30 @@ func mover(delta):
 	
 	on_air_time += delta
 	prev_jump_pressed = jump
+	
+	var tfloor = get_node("rayFloor").is_colliding()
+	
+	var walking = false
+	
+	if walk_right:
+		get_node("Sprite").set_flip_h(false)
+		walking = true
+
+	if walk_left:
+		get_node("Sprite").set_flip_h(true)
+		walking = true
+	
+	if walking:
+		if tfloor:
+			new_animation = "walking"
+	else:
+		if tfloor:
+			new_animation = "idle"
+	
+	if animation != new_animation:
+		get_node("AnimationPlayer").play(new_animation)
+		animation = new_animation
+		
 
 func _ready():
 	set_fixed_process(true)
@@ -177,4 +204,4 @@ func _ready():
 	shoot_text += numero
 	look_up_text += numero
 	look_down_text += numero
-	get_child(0).set_texture(load("res://sprites/paiva"+numero+".png"))
+	get_child(0).set_texture(load("res://sprites/paiva"+numero+"_walking.png"))
