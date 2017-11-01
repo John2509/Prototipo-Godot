@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 var direcao = Vector2()
 var colidiu = false
-const velocidade = 1000
+const velocidade = 600
 
 func _ready():
 	set_fixed_process(true)

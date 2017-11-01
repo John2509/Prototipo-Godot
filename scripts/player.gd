@@ -13,9 +13,9 @@ const GRAVITY = 1500.0 # Pixels/second
 const FLOOR_ANGLE_TOLERANCE = 40
 const WALK_FORCE = 1800
 const WALK_MIN_SPEED = 30
-const WALK_MAX_SPEED = 600
+const WALK_MAX_SPEED = 300
 const STOP_FORCE = 3000
-const JUMP_SPEED = 800
+const JUMP_SPEED = 600
 const JUMP_MAX_AIRBORNE_TIME = 0.2
 
 const SLIDE_STOP_VELOCITY = 5.0 # One pixel per second
@@ -36,6 +36,9 @@ var shoot_text= "shoot_p"
 var look_up_text = "look_up_p"
 var look_down_text = "look_down_p"
 
+var new_animation = ""
+var animation = ""
+
 var direcao = Vector2(1,0)
 
 func _fixed_process(delta):
@@ -43,6 +46,7 @@ func _fixed_process(delta):
 	atirar()
 
 func atirar():
+	
 	var atirar = Input.is_action_pressed(shoot_text)
 	if (atirar and not esta_atirando):
 		var verificar = false
@@ -55,16 +59,16 @@ func atirar():
 			verificar = true
 		if (verificar and direcao.y != 0 and not Input.is_action_pressed(walk_left_text) and not Input.is_action_pressed(walk_right_text)):
 			direcao.x = 0
+			
 		var shot = preload("res://scenes/bala.tscn").instance()
 		shot.set_direcao(direcao)
 		shot.set_pos(get_global_pos()+Vector2(direcao.x*30,direcao.y*45))
 		get_node("../").add_child(shot)
 		direcao.y = 0
-		direcao.x = aux
-	
+		direcao.x = aux	
+		
 	esta_atirando = atirar
-
-
+			
 func mover(delta):
 	# Create forces
 	var force = Vector2(0, GRAVITY)
@@ -162,6 +166,44 @@ func mover(delta):
 	
 	on_air_time += delta
 	prev_jump_pressed = jump
+	
+	var tfloor = get_node("rayFloor").is_colliding()
+	
+	var walking = false
+	
+	if walk_right:
+		get_node("Sprite").set_flip_h(false)
+		walking = true
+
+	if walk_left:
+		get_node("Sprite").set_flip_h(true)
+		walking = true
+	
+	var tfloor = get_node("rayFloor").is_colliding()
+	
+	if walking:
+		if tfloor && !esta_atirando:
+			new_animation = "walking"
+		elif !tfloor && !esta_atirando:
+			new_animation = "jumping"
+		elif tfloor && esta_atirando:
+			new_animation = "shooting"
+		elif !tfloor && esta_atirando:
+			new_animation = "jumpingshoot"
+	else:
+		if tfloor && !esta_atirando:
+			new_animation = "idle"
+		elif !tfloor && !esta_atirando:
+			new_animation = "jumping"
+		elif tfloor && esta_atirando:
+			new_animation = "shooting"
+		elif !tfloor && esta_atirando:
+			new_animation = "jumpingshoot"
+	
+	if animation != new_animation:
+		get_node("AnimationPlayer").play(new_animation)
+		animation = new_animation
+	
 
 func _ready():
 	set_fixed_process(true)
@@ -177,4 +219,4 @@ func _ready():
 	shoot_text += numero
 	look_up_text += numero
 	look_down_text += numero
-	get_child(0).set_texture(load("res://sprites/paiva"+numero+".png"))
+	get_child(0).set_texture(load("res://sprites/paiva0"+numero+".png"))
