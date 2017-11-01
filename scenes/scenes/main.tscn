@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=1]
+
+[ext_resource path="res://scenes/player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/background.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/Objeto_que_cai.tscn" type="PackedScene" id=3]
+
+[node name="main" type="Node"]
+
+[node name="player1" parent="." instance=ExtResource( 1 )]
+
+transform/pos = Vector2( 661.114, 231.529 )
+
+[node name="player2" parent="." instance=ExtResource( 1 )]
+
+transform/pos = Vector2( 326.372, 527.217 )
+
+[node name="background" parent="." instance=ExtResource( 2 )]
+
+collision/layers = 2
+
+[node name="Objeto_que_cai" parent="." instance=ExtResource( 3 )]
+
+
