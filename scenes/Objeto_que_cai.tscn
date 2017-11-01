@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=1]
+[gd_scene load_steps=6 format=1]
 
 [ext_resource path="res://scripts/ObjetoQueCai.gd" type="Script" id=1]
 [ext_resource path="res://sprites/Falling_Object_1.png" type="Texture" id=2]
@@ -8,20 +8,15 @@
 custom_solver_bias = 0.0
 points = Vector2Array( 0, -10, 8.66025, 5, -8.66025, 5 )
 
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="RectangleShape2D" id=2]
 
 custom_solver_bias = 0.0
 extents = Vector2( 10, 10 )
 
-[sub_resource type="ConvexPolygonShape2D" id=2]
+[sub_resource type="ConvexPolygonShape2D" id=3]
 
 custom_solver_bias = 0.0
 points = Vector2Array( 0, -10, 8.66025, 5, -8.66025, 5 )
-
-[sub_resource type="RectangleShape2D" id=4]
-
-custom_solver_bias = 0.0
-extents = Vector2( 10, 10 )
 
 [node name="Objeto_que_cai" type="Node2D"]
 
@@ -32,7 +27,7 @@ script/script = ExtResource( 1 )
 transform/pos = Vector2( 522.79, 171.783 )
 input/pickable = false
 shapes/0/shape = SubResource( 1 )
-shapes/0/transform = Matrix32( 4.28268, 0, 0, 4.16752, 0.344727, 10.4221 )
+shapes/0/transform = Matrix32( 4.28268, 0, 0, 4.16752, 0.210022, 10.217 )
 shapes/0/trigger = false
 collision/layers = 1
 collision/mask = 1
@@ -54,12 +49,13 @@ damp_override/angular = -1.0
 
 [node name="Sprite" type="Sprite" parent="objeto_cima"]
 
+transform/pos = Vector2( 0.210022, 0.216995 )
 texture = ExtResource( 2 )
 
 [node name="Area2D" type="Area2D" parent="objeto_cima"]
 
 input/pickable = true
-shapes/0/shape = SubResource( 3 )
+shapes/0/shape = SubResource( 2 )
 shapes/0/transform = Matrix32( 3.70269, 0, 0, 0.0796147, 0.493185, 32.4611 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
@@ -73,13 +69,13 @@ collision/mask = 3
 
 transform/pos = Vector2( 0.493185, 32.4611 )
 transform/scale = Vector2( 3.70269, 0.0796147 )
-shape = SubResource( 3 )
+shape = SubResource( 2 )
 trigger = false
 _update_shape_index = 0
 
 [node name="CollisionShape2D1" type="CollisionShape2D" parent="objeto_cima"]
 
-transform/pos = Vector2( 0.344727, 10.4221 )
+transform/pos = Vector2( 0.210022, 10.217 )
 transform/scale = Vector2( 4.28268, 4.16752 )
 shape = SubResource( 1 )
 trigger = false
@@ -89,8 +85,8 @@ _update_shape_index = 0
 
 transform/pos = Vector2( 554.349, 395.404 )
 input/pickable = false
-shapes/0/shape = SubResource( 2 )
-shapes/0/transform = Matrix32( 4.36923, 0, 0, 4.13799, 0.0536499, 11.7939 )
+shapes/0/shape = SubResource( 3 )
+shapes/0/transform = Matrix32( 4.36923, 0, 0, 4.13799, 0.651001, 9.59601 )
 shapes/0/trigger = false
 collision/layers = 1
 collision/mask = 1
@@ -117,8 +113,8 @@ texture = ExtResource( 2 )
 [node name="Area2D" type="Area2D" parent="objeto_baixo"]
 
 input/pickable = true
-shapes/0/shape = SubResource( 4 )
-shapes/0/transform = Matrix32( 3.76282, 0, 0, 0.0990767, -0.043978, 33.8808 )
+shapes/0/shape = SubResource( 2 )
+shapes/0/transform = Matrix32( 3.70269, 0, 0, 0.0796147, 0.493185, 32.4611 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
@@ -129,17 +125,17 @@ collision/mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="objeto_baixo/Area2D"]
 
-transform/pos = Vector2( -0.043978, 33.8808 )
-transform/scale = Vector2( 3.76282, 0.0990767 )
-shape = SubResource( 4 )
+transform/pos = Vector2( 0.493185, 32.4611 )
+transform/scale = Vector2( 3.70269, 0.0796147 )
+shape = SubResource( 2 )
 trigger = false
 _update_shape_index = 0
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="objeto_baixo"]
 
-transform/pos = Vector2( 0.0536499, 11.7939 )
+transform/pos = Vector2( 0.651001, 9.59601 )
 transform/scale = Vector2( 4.36923, 4.13799 )
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 trigger = false
 _update_shape_index = 0
 
