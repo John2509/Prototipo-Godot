@@ -16,8 +16,6 @@ transform/pos = Vector2( 326.372, 527.217 )
 
 [node name="background" parent="." instance=ExtResource( 2 )]
 
-collision/layers = 2
-
 [node name="Objeto_que_cai" parent="." instance=ExtResource( 3 )]
 
 
