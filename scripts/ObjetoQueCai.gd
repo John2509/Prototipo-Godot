@@ -1,7 +1,12 @@
 extends Node2D
 
-#var IS_FALLING = 0 #se esta caindo, pode matar
-var ativar = false
+const TIME_MAX = 7.5
+var ativar = false #se esta caindo, pode matar
+var time
+
+var new_animation = ""
+var animation = ""
+
 
 func _fixed_process(delta):
 	#print ("ok")
@@ -10,9 +15,21 @@ func _fixed_process(delta):
 			if (filho.get_type() == "RigidBody2D"):
 				filho.set_sleeping(false)
 				filho.set_gravity_scale(6)
+			time += delta 
+		if time > TIME_MAX:
+			for filho in get_children():
+				if (filho.get_type() == "RigidBody2D"):
+					ativar = false
+					filho.queue_free()
 		#print ("nao ok")
+	if animation != new_animation:
+		get_node("AnimationObject").play(new_animation)
+		animation = new_animation
+		
 
 func _ready():
+	add_to_group("objeto")
+	time = 0.0
 	#print("teste")
 	for filho in get_children():
 		if (filho.get_type() == "RigidBody2D"):
@@ -27,6 +44,9 @@ func _ready():
 
 
 func _on_Area2D_body_enter( body ):
-	ativar = true
+	if	body.is_in_group("bala"):
+		ativar = true
+	elif (ativar and body.is_in_group("player")):
+		body.kill() 
 	pass
  # replace with function body

@@ -4,7 +4,7 @@ var direcao = Vector2()
 var colidiu = false
 var time
 const velocidade = 600
-const TIME_MAX = 0.3
+const TIME_MAX = 0.4
 
 var new_animation = ""
 var animation = ""
