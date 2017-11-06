@@ -3,6 +3,7 @@ extends Node2D
 const TIME_MAX = 7.5
 var ativar = false #se esta caindo, pode matar
 var time
+var matar = true
 
 var new_animation = ""
 var animation = ""
@@ -44,9 +45,11 @@ func _ready():
 
 
 func _on_Area2D_body_enter( body ):
-	if	body.is_in_group("bala"):
+	if body.is_in_group("bala"):
 		ativar = true
-	elif (ativar and body.is_in_group("player")):
+	elif (ativar and body.is_in_group("player") and matar):
 		body.kill() 
+	elif (ativar and body.is_in_group("chao")):
+		matar = false
 	pass
  # replace with function body

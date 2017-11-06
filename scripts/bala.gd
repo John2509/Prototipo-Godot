@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
 var direcao = Vector2()
-var colidiu = false
+#var colidiu = false
 var time
 const velocidade = 600
 const TIME_MAX = 0.4
@@ -16,7 +16,10 @@ func _ready():
 
 func _fixed_process(delta):
 	new_animation = "fading" 
-	if (not is_colliding() and not colidiu and time < TIME_MAX) :
+	if (get_node("rayFloor").is_colliding()):
+		revert_motion()
+		queue_free()
+	if (not is_colliding() and time < TIME_MAX) :
 		move(direcao * delta * velocidade)
 		time += delta
 	else:
