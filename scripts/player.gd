@@ -29,6 +29,8 @@ var prev_jump_pressed = false
 
 var esta_atirando = false
 
+var dead = false
+
 var walk_left_text = "move_left_p"
 var walk_right_text = "move_right_p"
 var jump_text = "jump_p"
@@ -42,13 +44,15 @@ var animation = ""
 var direcao = Vector2(1,0)
 
 func _fixed_process(delta):
+	if (not get_node("AnimationPlayer").is_playing() and dead):
+		queue_free()
 	mover(delta)
 	atirar()
 
 func atirar():
 	
 	var atirar = Input.is_action_pressed(shoot_text)
-	if (atirar and not esta_atirando):
+	if (atirar and not esta_atirando and not dead):
 		var verificar = false
 		var aux = direcao.x
 		if (Input.is_action_pressed(look_up_text)):
@@ -131,7 +135,7 @@ func mover(delta):
 			on_air_time = 0
 			floor_velocity = get_collider_velocity()
 		
-		if (on_air_time == 0 and force.x == 0 and get_travel().length() < SLIDE_STOP_MIN_TRAVEL and abs(velocity.x) < SLIDE_STOP_VELOCITY and get_collider_velocity() == Vector2()):
+		if (dead or (on_air_time == 0 and force.x == 0 and get_travel().length() < SLIDE_STOP_MIN_TRAVEL and abs(velocity.x) < SLIDE_STOP_VELOCITY and get_collider_velocity() == Vector2())):
 			# Since this formula will always slide the character around, 
 			# a special case must be considered to to stop it from moving 
 			# if standing on an inclined floor. Conditions are:
@@ -158,7 +162,7 @@ func mover(delta):
 		# If falling, no longer jumping
 		jumping = false
 	
-	if (on_air_time < JUMP_MAX_AIRBORNE_TIME and jump and not prev_jump_pressed and not jumping):
+	if (not dead and (on_air_time < JUMP_MAX_AIRBORNE_TIME and jump and not prev_jump_pressed and not jumping)):
 		# Jump must also be allowed to happen if the character left the floor a little bit ago.
 		# Makes controls more snappy.
 		velocity.y = -JUMP_SPEED
@@ -171,11 +175,11 @@ func mover(delta):
 	
 	var walking = false
 	
-	if walk_right:
+	if walk_right and not dead:
 		get_node("Sprite").set_flip_h(false)
 		walking = true
 
-	if walk_left:
+	if walk_left and not dead:
 		get_node("Sprite").set_flip_h(true)
 		walking = true
 	
@@ -200,12 +204,16 @@ func mover(delta):
 		elif !tfloor && esta_atirando:
 			new_animation = "jumpingshoot"
 	
+	if (dead):
+		new_animation = "dying"
+	
 	if animation != new_animation:
 		get_node("AnimationPlayer").play(new_animation)
 		animation = new_animation
 	
 
 func _ready():
+	add_to_group("player") 
 	set_fixed_process(true)
 	set_process_input(true)
 	var numero
@@ -220,3 +228,8 @@ func _ready():
 	look_up_text += numero
 	look_down_text += numero
 	get_child(0).set_texture(load("res://sprites/paiva0"+numero+".png"))
+
+
+func kill():
+	dead = true
+	get_parent().player_morreu(get_name())
