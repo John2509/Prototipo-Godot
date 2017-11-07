@@ -96,8 +96,11 @@ bounce = 0.0
 
 input/pickable = true
 shapes/0/shape = SubResource( 2 )
-shapes/0/transform = Matrix32( 0.25, 0, 0, 1.23585, -0.999991, -12.5 )
+shapes/0/transform = Matrix32( 0.160714, 0, 0, 1.23585, -17, -12 )
 shapes/0/trigger = false
+shapes/1/shape = SubResource( 2 )
+shapes/1/transform = Matrix32( 0.160714, 0, 0, 1.23585, 14, -11 )
+shapes/1/trigger = false
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
@@ -105,11 +108,19 @@ angular_damp = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="porta_cima/Area2D"]
 
-transform/pos = Vector2( -0.999991, -12.5 )
-transform/scale = Vector2( 0.25, 1.23585 )
+transform/pos = Vector2( -17, -12 )
+transform/scale = Vector2( 0.160714, 1.23585 )
 shape = SubResource( 2 )
 trigger = false
 _update_shape_index = 0
+
+[node name="CollisionShape2D1" type="CollisionShape2D" parent="porta_cima/Area2D"]
+
+transform/pos = Vector2( 14, -11 )
+transform/scale = Vector2( 0.160714, 1.23585 )
+shape = SubResource( 2 )
+trigger = false
+_update_shape_index = 1
 
 [node name="Collision" type="CollisionShape2D" parent="porta_cima"]
 
@@ -159,8 +170,11 @@ bounce = 0.0
 
 input/pickable = true
 shapes/0/shape = SubResource( 7 )
-shapes/0/transform = Matrix32( 0.339286, 0, 0, 1.23585, -8.5, -12.5 )
+shapes/0/transform = Matrix32( 0.169643, 0, 0, 1.23585, -26.25, -12 )
 shapes/0/trigger = false
+shapes/1/shape = SubResource( 7 )
+shapes/1/transform = Matrix32( 0.169643, 0, 0, 1.23585, 10, -13 )
+shapes/1/trigger = false
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
@@ -168,11 +182,19 @@ angular_damp = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="porta_baixo/Area2D"]
 
-transform/pos = Vector2( -8.5, -12.5 )
-transform/scale = Vector2( 0.339286, 1.23585 )
+transform/pos = Vector2( -26.25, -12 )
+transform/scale = Vector2( 0.169643, 1.23585 )
 shape = SubResource( 7 )
 trigger = false
 _update_shape_index = 0
+
+[node name="CollisionShape2D1" type="CollisionShape2D" parent="porta_baixo/Area2D"]
+
+transform/pos = Vector2( 10, -13 )
+transform/scale = Vector2( 0.169643, 1.23585 )
+shape = SubResource( 7 )
+trigger = false
+_update_shape_index = 1
 
 [node name="Collision" type="CollisionShape2D" parent="porta_baixo"]
 
