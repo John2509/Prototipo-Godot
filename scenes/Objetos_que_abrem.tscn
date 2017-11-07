@@ -1,0 +1,232 @@
+[gd_scene load_steps=10 format=1]
+
+[ext_resource path="res://scripts/Objetos_que_abrem.gd" type="Script" id=1]
+[ext_resource path="res://sprites/door1.png" type="Texture" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 25, 54 )
+
+[sub_resource type="RectangleShape2D" id=2]
+
+custom_solver_bias = 0.0
+extents = Vector2( 25, 50 )
+
+[sub_resource type="Animation" id=3]
+
+resource/name = "closing"
+length = 0.7
+loop = false
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = {
+"times": FloatArray( 0, 0.03, 0.05, 0.07 ),
+"transitions": FloatArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3 ]
+}
+
+[sub_resource type="Animation" id=4]
+
+resource/name = "idle"
+length = 1.0
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = {
+"times": FloatArray( 0 ),
+"transitions": FloatArray( 1 ),
+"update": 1,
+"values": [ 3 ]
+}
+
+[sub_resource type="Animation" id=5]
+
+resource/name = "opening"
+length = 0.7
+loop = false
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = {
+"times": FloatArray( 0, 0.03, 0.05, 0.07 ),
+"transitions": FloatArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 3, 2, 1, 0 ]
+}
+
+[sub_resource type="RectangleShape2D" id=6]
+
+custom_solver_bias = 0.0
+extents = Vector2( 25, 51.8182 )
+
+[sub_resource type="RectangleShape2D" id=7]
+
+custom_solver_bias = 0.0
+extents = Vector2( 25, 50 )
+
+[node name="Node2D" type="Node2D"]
+
+script/script = ExtResource( 1 )
+
+[node name="porta_cima" type="StaticBody2D" parent="."]
+
+transform/pos = Vector2( 792, 265 )
+input/pickable = false
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Matrix32( 0.267857, 0, 0, 1.14912, -1.5, -11.5 )
+shapes/0/trigger = false
+collision/layers = 1
+collision/mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="Area2D" type="Area2D" parent="porta_cima"]
+
+input/pickable = true
+shapes/0/shape = SubResource( 2 )
+shapes/0/transform = Matrix32( 0.160714, 0, 0, 1.23585, -17, -12 )
+shapes/0/trigger = false
+shapes/1/shape = SubResource( 2 )
+shapes/1/transform = Matrix32( 0.160714, 0, 0, 1.23585, 14, -11 )
+shapes/1/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="porta_cima/Area2D"]
+
+transform/pos = Vector2( -17, -12 )
+transform/scale = Vector2( 0.160714, 1.23585 )
+shape = SubResource( 2 )
+trigger = false
+_update_shape_index = 0
+
+[node name="CollisionShape2D1" type="CollisionShape2D" parent="porta_cima/Area2D"]
+
+transform/pos = Vector2( 14, -11 )
+transform/scale = Vector2( 0.160714, 1.23585 )
+shape = SubResource( 2 )
+trigger = false
+_update_shape_index = 1
+
+[node name="Collision" type="CollisionShape2D" parent="porta_cima"]
+
+transform/pos = Vector2( -1.5, -11.5 )
+transform/scale = Vector2( 0.267857, 1.14912 )
+shape = SubResource( 1 )
+trigger = false
+_update_shape_index = 0
+
+[node name="AnimationDoor" type="AnimationPlayer" parent="porta_cima"]
+
+playback/process_mode = 1
+playback/default_blend_time = 0.0
+root/root = NodePath("..")
+anims/closing = SubResource( 3 )
+anims/idle = SubResource( 4 )
+anims/opening = SubResource( 5 )
+playback/active = true
+playback/speed = 1.0
+blend_times = [  ]
+autoplay = ""
+
+[node name="sprite" type="Sprite" parent="porta_cima"]
+
+visibility/light_mask = 2
+transform/pos = Vector2( 11, -12 )
+z/z = -1
+texture = ExtResource( 2 )
+hframes = 4
+frame = 3
+
+[node name="porta_baixo" type="StaticBody2D" parent="."]
+
+transform/pos = Vector2( 804, 576 )
+input/pickable = false
+shapes/0/shape = SubResource( 6 )
+shapes/0/transform = Matrix32( 0.339286, 0, 0, 1.1939, -8.5, -12.5526 )
+shapes/0/trigger = false
+collision/layers = 1
+collision/mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="Area2D" type="Area2D" parent="porta_baixo"]
+
+input/pickable = true
+shapes/0/shape = SubResource( 7 )
+shapes/0/transform = Matrix32( 0.169643, 0, 0, 1.23585, -26.25, -12 )
+shapes/0/trigger = false
+shapes/1/shape = SubResource( 7 )
+shapes/1/transform = Matrix32( 0.169643, 0, 0, 1.23585, 10, -13 )
+shapes/1/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="porta_baixo/Area2D"]
+
+transform/pos = Vector2( -26.25, -12 )
+transform/scale = Vector2( 0.169643, 1.23585 )
+shape = SubResource( 7 )
+trigger = false
+_update_shape_index = 0
+
+[node name="CollisionShape2D1" type="CollisionShape2D" parent="porta_baixo/Area2D"]
+
+transform/pos = Vector2( 10, -13 )
+transform/scale = Vector2( 0.169643, 1.23585 )
+shape = SubResource( 7 )
+trigger = false
+_update_shape_index = 1
+
+[node name="Collision" type="CollisionShape2D" parent="porta_baixo"]
+
+transform/pos = Vector2( -8.5, -12.5526 )
+transform/scale = Vector2( 0.339286, 1.1939 )
+shape = SubResource( 6 )
+trigger = false
+_update_shape_index = 0
+
+[node name="AnimationDoor" type="AnimationPlayer" parent="porta_baixo"]
+
+playback/process_mode = 1
+playback/default_blend_time = 0.0
+root/root = NodePath("..")
+anims/closing = SubResource( 3 )
+anims/idle = SubResource( 4 )
+anims/opening = SubResource( 5 )
+playback/active = true
+playback/speed = 1.0
+blend_times = [  ]
+autoplay = ""
+
+[node name="sprite" type="Sprite" parent="porta_baixo"]
+
+transform/pos = Vector2( 2, -12 )
+z/z = -1
+texture = ExtResource( 2 )
+hframes = 4
+frame = 3
+
+[connection signal="body_enter" from="porta_cima/Area2D" to="." method="_on_Area2D_body_enter"]
+
+[connection signal="body_enter" from="porta_baixo/Area2D" to="." method="_on_Area2D_body_enter"]
+
+

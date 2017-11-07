@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=1]
+[gd_scene load_steps=6 format=1]
 
 [ext_resource path="res://scripts/main.gd" type="Script" id=1]
 [ext_resource path="res://scenes/player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/background.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/Objeto_que_cai.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/Objetos_que_abrem.tscn" type="PackedScene" id=5]
 
 [node name="main" type="Node"]
 
@@ -22,5 +23,7 @@ transform/pos = Vector2( 326.372, 530.217 )
 bounce = 0.2
 
 [node name="Objeto_que_cai" parent="." instance=ExtResource( 4 )]
+
+[node name="Objeto_que_abre" parent="." instance=ExtResource( 5 )]
 
 
