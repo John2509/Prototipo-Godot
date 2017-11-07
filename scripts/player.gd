@@ -232,4 +232,6 @@ func _ready():
 
 func kill():
 	dead = true
+	new_animation = "dying"
+	get_node("AnimationPlayer").play(new_animation)
 	get_parent().player_morreu(get_name())
