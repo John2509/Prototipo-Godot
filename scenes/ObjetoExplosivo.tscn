@@ -3,7 +3,7 @@
 [ext_resource path="res://scripts/ObjetoExplosivo.gd" type="Script" id=1]
 [ext_resource path="res://sprites/pc_1.png" type="Texture" id=2]
 
-[sub_resource type="RectangleShape2D" id=8]
+[sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
 extents = Vector2( 40, 10.8333 )
@@ -15,7 +15,7 @@ extents = Vector2( 4.33093, 4.16162 )
 
 [sub_resource type="Animation" id=3]
 
-length = 2.0
+length = 0.31
 loop = false
 step = 0.01
 tracks/0/type = "value"
@@ -23,10 +23,10 @@ tracks/0/path = NodePath("sprite:frame")
 tracks/0/interp = 1
 tracks/0/imported = false
 tracks/0/keys = {
-"times": FloatArray( 0, 0.3 ),
-"transitions": FloatArray( 1, 1 ),
+"times": FloatArray( 0 ),
+"transitions": FloatArray( 1 ),
 "update": 1,
-"values": [ 0, 1 ]
+"values": [ 1 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("sprite:modulate")
@@ -43,22 +43,21 @@ tracks/2/path = NodePath("Particles2D:config/emitting")
 tracks/2/interp = 1
 tracks/2/imported = false
 tracks/2/keys = {
-"times": FloatArray( 0.3 ),
+"times": FloatArray( 0 ),
 "transitions": FloatArray( 1 ),
 "update": 1,
 "values": [ true ]
 }
 
-[sub_resource type="Animation" id=10]
+[sub_resource type="Animation" id=4]
 
 resource/name = "end"
 length = 1.0
 loop = false
 step = 0.1
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=5]
 
-resource/name = "idle"
 length = 1.0
 loop = false
 step = 0.1
@@ -83,10 +82,10 @@ tracks/1/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=6]
 
 resource/name = "telaAzul"
-length = 3.0
+length = 0.91
 loop = false
 step = 0.01
 tracks/0/type = "value"
@@ -94,35 +93,35 @@ tracks/0/path = NodePath("sprite:frame")
 tracks/0/interp = 1
 tracks/0/imported = false
 tracks/0/keys = {
-"times": FloatArray( 0, 0.3 ),
-"transitions": FloatArray( 1, 1 ),
+"times": FloatArray( 0 ),
+"transitions": FloatArray( 1 ),
 "update": 1,
-"values": [ 0, 1 ]
+"values": [ 1 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("sprite:modulate")
 tracks/1/interp = 1
 tracks/1/imported = false
 tracks/1/keys = {
-"times": FloatArray( 0, 0.13, 0.3 ),
-"transitions": FloatArray( 1, 1, 1 ),
+"times": FloatArray( 0, 0.13, 0.28, 0.44, 0.6, 0.74, 0.9 ),
+"transitions": FloatArray( 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ Color( 1, 1, 1, 1 ), Color( 1, 0, 0, 1 ), Color( 1, 1, 1, 1 ) ]
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 0, 0, 1 ), Color( 1, 1, 1, 1 ), Color( 0.96875, 0.0227051, 0.0227051, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 0.0195313, 0.0195313, 1 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="ColorRamp" id=5]
+[sub_resource type="ColorRamp" id=7]
 
 offsets = FloatArray( 0, 0.396296, 0.877778, 1 )
 colors = ColorArray( 0.996094, 0.996094, 0.996094, 1, 1, 0.821014, 0.00390625, 1, 0.992188, 0.395325, 0, 1, 0.796875, 0.00933838, 0.00933838, 1 )
 
-[sub_resource type="Animation" id=11]
+[sub_resource type="Animation" id=8]
 
 resource/name = "end"
 length = 1.0
 loop = false
 step = 0.1
 
-[sub_resource type="ColorRamp" id=7]
+[sub_resource type="ColorRamp" id=9]
 
 offsets = FloatArray( 0, 0.358779, 0.671756, 1 )
 colors = ColorArray( 1, 1, 1, 1, 1, 0.938721, 0.0195313, 1, 1, 0.781403, 0.0351563, 1, 0.71875, 0, 0, 1 )
@@ -135,7 +134,7 @@ script/script = ExtResource( 1 )
 
 transform/pos = Vector2( 153, 276 )
 input/pickable = false
-shapes/0/shape = SubResource( 8 )
+shapes/0/shape = SubResource( 1 )
 shapes/0/transform = Matrix32( 0.348837, 0, 0, 3.21687, 5, 2 )
 shapes/0/trigger = true
 collision/layers = 1
@@ -179,9 +178,9 @@ playback/process_mode = 1
 playback/default_blend_time = 0.0
 root/root = NodePath("..")
 anims/boom = SubResource( 3 )
-anims/end = SubResource( 10 )
-anims/idle = SubResource( 4 )
-anims/telaAzul = SubResource( 9 )
+anims/end = SubResource( 4 )
+anims/idle = SubResource( 5 )
+anims/telaAzul = SubResource( 6 )
 playback/active = true
 playback/speed = 1.0
 blend_times = [  ]
@@ -217,13 +216,13 @@ randomness/spread = 0.79
 randomness/linear_velocity = 0.3
 randomness/initial_size = 0.56
 randomness/final_size = 0.63
-color/color_ramp = SubResource( 5 )
+color/color_ramp = SubResource( 7 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PcCima"]
 
 transform/pos = Vector2( 5, 2 )
 transform/scale = Vector2( 0.348837, 3.21687 )
-shape = SubResource( 8 )
+shape = SubResource( 1 )
 trigger = true
 _update_shape_index = 0
 
@@ -231,7 +230,7 @@ _update_shape_index = 0
 
 transform/pos = Vector2( 171, 592 )
 input/pickable = false
-shapes/0/shape = SubResource( 8 )
+shapes/0/shape = SubResource( 1 )
 shapes/0/transform = Matrix32( 0.348837, 0, 0, 3.21687, -11, -2.5 )
 shapes/0/trigger = true
 collision/layers = 1
@@ -275,9 +274,9 @@ playback/process_mode = 1
 playback/default_blend_time = 0.0
 root/root = NodePath("..")
 anims/boom = SubResource( 3 )
-anims/end = SubResource( 11 )
-anims/idle = SubResource( 4 )
-anims/telaAzul = SubResource( 9 )
+anims/end = SubResource( 8 )
+anims/idle = SubResource( 5 )
+anims/telaAzul = SubResource( 6 )
 playback/active = true
 playback/speed = 1.0
 blend_times = [  ]
@@ -312,13 +311,13 @@ randomness/spread = 0.79
 randomness/linear_velocity = 0.3
 randomness/initial_size = 0.56
 randomness/final_size = 0.63
-color/color_ramp = SubResource( 7 )
+color/color_ramp = SubResource( 9 )
 
 [node name="CollisionShape2D1" type="CollisionShape2D" parent="PcBaixo"]
 
 transform/pos = Vector2( -11, -2.5 )
 transform/scale = Vector2( 0.348837, 3.21687 )
-shape = SubResource( 8 )
+shape = SubResource( 1 )
 trigger = true
 _update_shape_index = 0
 

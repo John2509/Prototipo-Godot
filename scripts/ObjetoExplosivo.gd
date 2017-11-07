@@ -32,6 +32,4 @@ func _on_Area2D_body_enter( body ):
 			filho.get_node("AnimationExplosion").play("telaAzul")
 			filho.get_node("AnimationExplosion").queue("boom")
 			filho.get_node("AnimationExplosion").queue("end")
-	#if(mortal and body.is_in_group("player")):
-	#	body.kill()
 
