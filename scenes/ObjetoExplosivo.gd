@@ -10,11 +10,10 @@ func _fixed_process(delta):
 			get_node("AnimationPlayer").queue("BOOM")
 	if(get_node("AnimationPlayer").get_current_animation() == "BOOM"):
 		mortal = true
-	#Quando acabar animacao -> for filho in get_children():
-	#			if (filho.get_type() == "RigidBody2D"):
-	#				ativar = false
-	#				mortal = false
-	#				filho.queue_free()
+		for filho in get_children():
+			if (filho.get_type() == "RigidBody2D"):
+				ativar = false
+				mortal = false
 
 func _ready():
 	add_to_group("objeto")
@@ -27,10 +26,10 @@ func _ready():
 	set_fixed_process(true)
 	pass
 
-
 func _on_Area2D_body_enter( body ):
 	if	body.is_in_group("bala") and not ativar:
 		ativar = true
 	if(mortal):
 		if body.is_in_group("player"):
 			body.kill()
+	
