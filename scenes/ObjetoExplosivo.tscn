@@ -1,0 +1,329 @@
+[gd_scene load_steps=12 format=1]
+
+[ext_resource path="res://scripts/ObjetoExplosivo.gd" type="Script" id=1]
+[ext_resource path="res://sprites/pc_1.png" type="Texture" id=2]
+
+[sub_resource type="RectangleShape2D" id=8]
+
+custom_solver_bias = 0.0
+extents = Vector2( 40, 10.8333 )
+
+[sub_resource type="RectangleShape2D" id=2]
+
+custom_solver_bias = 0.0
+extents = Vector2( 4.33093, 4.16162 )
+
+[sub_resource type="Animation" id=3]
+
+length = 2.0
+loop = false
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = {
+"times": FloatArray( 0, 0.3 ),
+"transitions": FloatArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 1 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("sprite:modulate")
+tracks/1/interp = 1
+tracks/1/imported = false
+tracks/1/keys = {
+"times": FloatArray( 0, 0.13, 0.3 ),
+"transitions": FloatArray( 1, 1, 1 ),
+"update": 1,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 0, 0, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Particles2D:config/emitting")
+tracks/2/interp = 1
+tracks/2/imported = false
+tracks/2/keys = {
+"times": FloatArray( 0.3 ),
+"transitions": FloatArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=10]
+
+resource/name = "end"
+length = 1.0
+loop = false
+step = 0.1
+
+[sub_resource type="Animation" id=4]
+
+resource/name = "idle"
+length = 1.0
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = {
+"times": FloatArray( 0 ),
+"transitions": FloatArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Particles2D:config/emitting")
+tracks/1/interp = 1
+tracks/1/imported = false
+tracks/1/keys = {
+"times": FloatArray( 0 ),
+"transitions": FloatArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=9]
+
+resource/name = "telaAzul"
+length = 3.0
+loop = false
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = {
+"times": FloatArray( 0, 0.3 ),
+"transitions": FloatArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 1 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("sprite:modulate")
+tracks/1/interp = 1
+tracks/1/imported = false
+tracks/1/keys = {
+"times": FloatArray( 0, 0.13, 0.3 ),
+"transitions": FloatArray( 1, 1, 1 ),
+"update": 1,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 0, 0, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="ColorRamp" id=5]
+
+offsets = FloatArray( 0, 0.396296, 0.877778, 1 )
+colors = ColorArray( 0.996094, 0.996094, 0.996094, 1, 1, 0.821014, 0.00390625, 1, 0.992188, 0.395325, 0, 1, 0.796875, 0.00933838, 0.00933838, 1 )
+
+[sub_resource type="Animation" id=11]
+
+resource/name = "end"
+length = 1.0
+loop = false
+step = 0.1
+
+[sub_resource type="ColorRamp" id=7]
+
+offsets = FloatArray( 0, 0.358779, 0.671756, 1 )
+colors = ColorArray( 1, 1, 1, 1, 1, 0.938721, 0.0195313, 1, 1, 0.781403, 0.0351563, 1, 0.71875, 0, 0, 1 )
+
+[node name="ObjetoExplosivo" type="Node2D"]
+
+script/script = ExtResource( 1 )
+
+[node name="PcCima" type="StaticBody2D" parent="."]
+
+transform/pos = Vector2( 153, 276 )
+input/pickable = false
+shapes/0/shape = SubResource( 8 )
+shapes/0/transform = Matrix32( 0.348837, 0, 0, 3.21687, 5, 2 )
+shapes/0/trigger = true
+collision/layers = 1
+collision/mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="Area2D" type="Area2D" parent="PcCima"]
+
+transform/scale = Vector2( 0.5, 0.5 )
+input/pickable = true
+shapes/0/shape = SubResource( 2 )
+shapes/0/transform = Matrix32( 25.3987, 0, 0, 18.7664, 16, 6 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PcCima/Area2D"]
+
+transform/pos = Vector2( 16, 6 )
+transform/scale = Vector2( 25.3987, 18.7664 )
+shape = SubResource( 2 )
+trigger = false
+_update_shape_index = 0
+
+[node name="sprite" type="Sprite" parent="PcCima"]
+
+transform/pos = Vector2( 7, 2 )
+z/z = -1
+texture = ExtResource( 2 )
+hframes = 2
+frame = 1
+
+[node name="AnimationExplosion" type="AnimationPlayer" parent="PcCima"]
+
+playback/process_mode = 1
+playback/default_blend_time = 0.0
+root/root = NodePath("..")
+anims/boom = SubResource( 3 )
+anims/end = SubResource( 10 )
+anims/idle = SubResource( 4 )
+anims/telaAzul = SubResource( 9 )
+playback/active = true
+playback/speed = 1.0
+blend_times = [  ]
+autoplay = ""
+
+[node name="Particles2D" type="Particles2D" parent="PcCima"]
+
+transform/pos = Vector2( 0, -1 )
+config/amount = 100
+config/lifetime = 0.6
+config/emit_timeout = 0.6
+config/emitting = false
+config/process_mode = 1
+config/explosiveness = 0.4
+params/direction = 0.0
+params/spread = 180.0
+params/linear_velocity = 80.0
+params/spin_velocity = 0.0
+params/orbit_velocity = 0.0
+params/gravity_direction = 0.0
+params/gravity_strength = 4.0
+params/radial_accel = 0.0
+params/tangential_accel = 0.0
+params/damping = 0.0
+params/initial_angle = 0.0
+params/initial_size = 7.0
+params/final_size = 12.0
+params/hue_variation = 0.0
+params/anim_speed_scale = 1.0
+params/anim_initial_pos = 0.0
+randomness/direction = 0.41
+randomness/spread = 0.79
+randomness/linear_velocity = 0.3
+randomness/initial_size = 0.56
+randomness/final_size = 0.63
+color/color_ramp = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PcCima"]
+
+transform/pos = Vector2( 5, 2 )
+transform/scale = Vector2( 0.348837, 3.21687 )
+shape = SubResource( 8 )
+trigger = true
+_update_shape_index = 0
+
+[node name="PcBaixo" type="StaticBody2D" parent="."]
+
+transform/pos = Vector2( 171, 592 )
+input/pickable = false
+shapes/0/shape = SubResource( 8 )
+shapes/0/transform = Matrix32( 0.348837, 0, 0, 3.21687, -11, -2.5 )
+shapes/0/trigger = true
+collision/layers = 1
+collision/mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="Area2D" type="Area2D" parent="PcBaixo"]
+
+transform/scale = Vector2( 0.5, 0.5 )
+input/pickable = true
+shapes/0/shape = SubResource( 2 )
+shapes/0/transform = Matrix32( 25.3987, 0, 0, 18.7664, -20, -6 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PcBaixo/Area2D"]
+
+transform/pos = Vector2( -20, -6 )
+transform/scale = Vector2( 25.3987, 18.7664 )
+shape = SubResource( 2 )
+trigger = false
+_update_shape_index = 0
+
+[node name="sprite" type="Sprite" parent="PcBaixo"]
+
+transform/pos = Vector2( -12.0505, -2.82401 )
+z/z = -1
+texture = ExtResource( 2 )
+hframes = 2
+frame = 1
+
+[node name="AnimationExplosion" type="AnimationPlayer" parent="PcBaixo"]
+
+playback/process_mode = 1
+playback/default_blend_time = 0.0
+root/root = NodePath("..")
+anims/boom = SubResource( 3 )
+anims/end = SubResource( 11 )
+anims/idle = SubResource( 4 )
+anims/telaAzul = SubResource( 9 )
+playback/active = true
+playback/speed = 1.0
+blend_times = [  ]
+autoplay = ""
+
+[node name="Particles2D" type="Particles2D" parent="PcBaixo"]
+
+config/amount = 100
+config/lifetime = 0.6
+config/emit_timeout = 0.6
+config/emitting = false
+config/process_mode = 1
+config/explosiveness = 0.4
+params/direction = 0.0
+params/spread = 180.0
+params/linear_velocity = 80.0
+params/spin_velocity = 0.0
+params/orbit_velocity = 0.0
+params/gravity_direction = 0.0
+params/gravity_strength = 4.0
+params/radial_accel = 0.0
+params/tangential_accel = 0.0
+params/damping = 0.0
+params/initial_angle = 0.0
+params/initial_size = 7.0
+params/final_size = 12.0
+params/hue_variation = 0.0
+params/anim_speed_scale = 1.0
+params/anim_initial_pos = 0.0
+randomness/direction = 0.41
+randomness/spread = 0.79
+randomness/linear_velocity = 0.3
+randomness/initial_size = 0.56
+randomness/final_size = 0.63
+color/color_ramp = SubResource( 7 )
+
+[node name="CollisionShape2D1" type="CollisionShape2D" parent="PcBaixo"]
+
+transform/pos = Vector2( -11, -2.5 )
+transform/scale = Vector2( 0.348837, 3.21687 )
+shape = SubResource( 8 )
+trigger = true
+_update_shape_index = 0
+
+[connection signal="body_enter" from="PcCima/Area2D" to="." method="_on_Area2D_body_enter"]
+
+[connection signal="body_enter" from="PcBaixo/Area2D" to="." method="_on_Area2D_body_enter"]
+
+
