@@ -196,7 +196,7 @@ angular_damp = 1.0
 collision/layers = 3
 collision/mask = 3
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="objeto_cima/Area2D"]
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="objeto_cima/Area2D"]
 
 transform/pos = Vector2( -24.7869, -4.90941 )
 transform/rot = 60.0
@@ -293,6 +293,12 @@ input/pickable = true
 shapes/0/shape = SubResource( 12 )
 shapes/0/transform = Matrix32( 3.70269, 0, 0, 0.0141035, 0.169617, 37.0357 )
 shapes/0/trigger = false
+shapes/1/shape = SubResource( 12 )
+shapes/1/transform = Matrix32( 1.85134, 3.20662, -0.0104936, 0.0060585, 25.0872, -8.59247 )
+shapes/1/trigger = false
+shapes/2/shape = SubResource( 12 )
+shapes/2/transform = Matrix32( 1.85134, -3.20662, 0.0104936, 0.0060585, -27.1359, -8.31346 )
+shapes/2/trigger = false
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
@@ -300,13 +306,31 @@ angular_damp = 1.0
 collision/layers = 3
 collision/mask = 3
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="objeto_baixo/Area2D"]
+[node name="CollisionShape2D1" type="CollisionShape2D" parent="objeto_baixo/Area2D"]
 
 transform/pos = Vector2( 0.169617, 37.0357 )
 transform/scale = Vector2( 3.70269, 0.0141035 )
 shape = SubResource( 12 )
 trigger = false
 _update_shape_index = 0
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="objeto_baixo/Area2D"]
+
+transform/pos = Vector2( 25.0872, -8.59247 )
+transform/rot = -60.0
+transform/scale = Vector2( 3.70269, 0.012117 )
+shape = SubResource( 12 )
+trigger = false
+_update_shape_index = 1
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="objeto_baixo/Area2D"]
+
+transform/pos = Vector2( -27.1359, -8.31346 )
+transform/rot = 60.0
+transform/scale = Vector2( 3.70269, 0.012117 )
+shape = SubResource( 12 )
+trigger = false
+_update_shape_index = 2
 
 [node name="CollisionShape2D2" type="CollisionPolygon2D" parent="objeto_baixo"]
 

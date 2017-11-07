@@ -24,6 +24,6 @@ bounce = 0.2
 
 [node name="Objeto_que_cai" parent="." instance=ExtResource( 4 )]
 
-[node name="Node2D" parent="." instance=ExtResource( 5 )]
+[node name="Objeto_que_abre" parent="." instance=ExtResource( 5 )]
 
 
